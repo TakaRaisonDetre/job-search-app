@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+import {Provider} from 'react-redux'
+import store from './store'
 
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -24,7 +26,7 @@ render(){
   const ReviewStackScreen =() =>{
   return(
    <ReviewStack.Navigator>
-      <ReviewStack.Screen name="review" component={ReviewScreen} options={ReviewScreen.navigationOptions}/>
+       <ReviewStack.Screen name="review" component={ReviewScreen} options={ReviewScreen.navigationOptions}/>
        <ReviewStack.Screen name="setting" component={SettingScreen}/>
       
     </ReviewStack.Navigator>
@@ -45,6 +47,7 @@ render(){
   }  
   const Tab = createBottomTabNavigator();
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="welcome" component={WelcomeScreen} />
@@ -52,6 +55,7 @@ render(){
         <Tab.Screen name="main" component={MainTabScreen} /> 
       </Tab.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
